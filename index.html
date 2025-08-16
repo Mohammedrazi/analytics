@@ -1,0 +1,413 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mohammed Razi — Power BI & Advanced Excel Portfolio</title>
+  <meta name="description" content="Portfolio of Mohammed Razi showcasing Power BI dashboards and Advanced Excel analytics, reports, and automation." />
+  <meta name="theme-color" content="#0f172a" />
+  <!-- Open Graph -->
+  <meta property="og:title" content="Power BI & Advanced Excel Portfolio" />
+  <meta property="og:description" content="Interactive dashboards, Excel automation, and business reporting." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://your-domain.com" />
+  <meta property="og:image" content="https://your-domain.com/preview.png" />
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <style>
+    :root{
+      --bg:#0b1020;
+      --bg-soft:#0f172a;
+      --text:#e5e7eb;
+      --muted:#94a3b8;      
+      --brand:#22c55e;
+      --card:#111827;
+      --ring:rgba(34,197,94,.45);
+      --shadow:0 10px 25px rgba(0,0,0,.35);
+    }
+    @media (prefers-color-scheme: light){
+      :root{
+        --bg:#f8fafc;
+        --bg-soft:#ffffff;
+        --text:#0f172a;
+        --muted:#475569;
+        --brand:#16a34a;
+        --card:#ffffff;
+        --ring:rgba(22,163,74,.35);
+        --shadow:0 10px 25px rgba(2,6,23,.08);
+      }
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font:16px/1.6 system-ui,-apple-system,Segoe UI,Roboto,Ubuntu,Cantarell,"Helvetica Neue",Arial;
+      color:var(--text);
+      background:linear-gradient(180deg,var(--bg) 0%, var(--bg-soft) 100%);
+    }
+    a{color:var(--brand);text-decoration:none}
+    a:focus,button:focus,input:focus,textarea:focus,select:focus{
+      outline:2px solid var(--ring);outline-offset:2px;border-radius:6px
+    }
+    /* Header */
+    header{
+      position:sticky;top:0;z-index:50;
+      backdrop-filter:saturate(180%) blur(10px);
+      background:color-mix(in oklab, var(--bg-soft) 80%, transparent);
+      border-bottom:1px solid color-mix(in oklab, var(--muted) 25%, transparent);
+    }
+    .nav{
+      max-width:1100px;margin:auto;display:flex;align-items:center;justify-content:space-between;
+      padding:12px 16px;
+    }
+    .brand{display:flex;gap:10px;align-items:center}
+    .logo{
+      width:34px;height:34px;display:grid;place-items:center;border-radius:9px;
+      background:radial-gradient(60% 60% at 30% 30%, var(--brand), transparent),
+                 linear-gradient(135deg, color-mix(in oklab, var(--brand) 80%, #22c55e) , transparent);
+      box-shadow:var(--shadow)
+    }
+    .brand b{letter-spacing:.3px}
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    nav a{font-weight:600;color:var(--text);opacity:.85}
+    nav a:hover{opacity:1}
+    .menu-btn{display:none}
+    @media (max-width:720px){
+      nav ul{display:none}
+      .menu-btn{display:inline-flex;gap:8px;align-items:center}
+    }
+
+    /* Sections */
+    section{padding:64px 16px}
+    .container{max-width:1100px;margin:auto}
+    .hero{
+      padding:72px 16px 48px; text-align:center;
+    }
+    .tag{
+      display:inline-block;padding:6px 10px;border:1px solid color-mix(in oklab, var(--muted) 35%, transparent);
+      border-radius:999px;font-size:12px;color:var(--muted)
+    }
+    h1{font-size:clamp(28px, 4vw + 8px, 44px);margin:14px 0 10px}
+    .lead{max-width:780px;margin:0 auto;color:var(--muted)}
+    .cta{display:flex;gap:12px;justify-content:center;margin-top:28px;flex-wrap:wrap}
+    .btn{
+      padding:12px 18px;border-radius:10px;border:1px solid transparent;font-weight:700;cursor:pointer
+    }
+    .btn-primary{background:var(--brand);color:#04210e}
+    .btn-outline{border-color:color-mix(in oklab, var(--muted) 35%, transparent);color:var(--text);background:transparent}
+    .grid{
+      display:grid;gap:18px
+    }
+    .grid-3{grid-template-columns:repeat(3,1fr)}
+    .grid-2{grid-template-columns:repeat(2,1fr)}
+    @media (max-width:900px){.grid-3{grid-template-columns:repeat(2,1fr)}}
+    @media (max-width:640px){.grid-3,.grid-2{grid-template-columns:1fr}}
+
+    /* Cards */
+    .card{
+      background:var(--card);border:1px solid color-mix(in oklab, var(--muted) 20%, transparent);
+      border-radius:14px;padding:18px;box-shadow:var(--shadow)
+    }
+    .card h3{margin:8px 0 6px}
+    .muted{color:var(--muted)}
+    .kpi{display:flex;gap:14px;align-items:center}
+    .kpi b{font-size:22px}
+
+    /* Embed wrapper */
+    .embed{
+      position:relative;overflow:hidden;border-radius:14px;border:1px solid color-mix(in oklab, var(--muted) 25%, transparent);
+      box-shadow:var(--shadow); background:#000; aspect-ratio:16/9;
+    }
+    .embed iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+
+    /* Timeline */
+    .timeline{display:grid;gap:14px}
+    .timeline .row{display:flex;gap:14px}
+    .timeline .dot{width:10px;height:10px;border-radius:50%;background:var(--brand);margin-top:10px;flex:0 0 10px}
+    .timeline .content{flex:1}
+
+    /* Footer */
+    footer{padding:36px 16px;border-top:1px solid color-mix(in oklab, var(--muted) 25%, transparent);text-align:center;color:var(--muted)}
+
+    .badge{
+      font-size:12px;padding:4px 8px;border-radius:7px;border:1px solid color-mix(in oklab, var(--muted) 30%, transparent);
+      display:inline-flex;gap:8px;align-items:center
+    }
+    .chips{display:flex;gap:8px;flex-wrap:wrap;margin-top:8px}
+    .sep{height:1px;background:color-mix(in oklab, var(--muted) 25%, transparent);margin:22px 0}
+    .hide{display:none}
+  </style>
+
+  <!-- Schema.org Person + WebSite -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Mohammed Razi",
+    "jobTitle":"Data Analyst / Reporting",
+    "url":"https://your-domain.com",
+    "sameAs":[],
+    "knowsAbout":["Power BI","DAX","Power Query","Excel","Pivot Tables","VBA","ETL","SQL"],
+    "worksFor":{"@type":"Organization","name":"Lulu International Pvt"},
+    "hasOccupation":{"@type":"Occupation","name":"Storekeeper & Reporting"},
+    "email":"mailto:yourmail@example.com"
+  }
+  </script>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="nav">
+      <div class="brand">
+        <div class="logo    " aria-hidden="true"></div>
+        <b>Razi · Data Reports</b>
+      </div>
+      <button class="menu-btn btn btn-outline" aria-controls="menu" aria-expanded="false" onclick="toggleMenu()">Menu</button>
+      <nav id="menu" aria-label="Primary">
+        <ul>
+          <li><a href="#about">About</a></li>
+          <li><a href="#skills">Skills</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
+          <li><a href="#experience">Experience</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <span class="tag">Power BI · Advanced Excel · Reporting Automation</span>
+      <h1>Transforming raw data into clear, actionable dashboards.</h1>
+      <p class="lead">I build interactive Power BI reports and high-impact Excel models that help retail teams cut variance, track inventory, and make fast decisions.</p>
+      <div class="cta">
+        <a class="btn btn-primary" href="#portfolio">View Portfolio</a>
+
+      </div>
+      <div class="chips" style="justify-content:center;margin-top:14px">
+        <span class="badge">Available for freelance</span>
+        
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills -->
+  <section id="skills">
+    <div class="container">
+      <h2>Skills</h2>
+      <div class="grid grid-3" style="margin-top:14px">
+        <div class="card">
+          <h3>Power BI</h3>
+          <p class="muted">DAX, Power Query, data modeling, custom visuals, row-level security, refresh schedules.</p>
+          <div class="sep"></div>
+          <div class="kpi"><b>25+</b><span class="muted">Interactive dashboards</span></div>
+        </div>
+        <div class="card">
+          <h3>Advanced Excel</h3>
+          <p class="muted">Pivot tables, Power Pivot, XLOOKUP, dynamic arrays, dashboards, macros/VBA automation.</p>
+          <div class="sep"></div>
+          <div class="kpi"><b>5–10x</b><span class="muted">Faster monthly reporting</span></div>
+        </div>
+        <div class="card">
+          <h3>Data Cleanup & ETL</h3>
+          <p class="muted">CSV/Excel consolidation, data quality checks, M code, query folding, schedule automation.</p>
+          <div class="sep"></div>
+          <div class="kpi"><b>99%</b><span class="muted">Error reduction in GRN</span></div>
+        </div>
+      </div>
+      <div class="chips">
+        <span class="badge">DAX</span><span class="badge">Power Query (M)</span><span class="badge">Power Pivot</span>
+        <span class="badge">VBA</span><span class="badge">SQL basics</span><span class="badge">Data Modeling</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio -->
+  <section id="portfolio">
+    <div class="container">
+      <h2>Portfolio</h2>
+      <p class="muted">A few of my favorite Power BI & Excel projects. Click to explore.</p>
+
+      <!-- Power BI Embed -->
+      <div class="card" style="margin-top:12px">
+        <h3>Sales Insights Dashboard — Power BI</h3>
+        <p class="muted">Monitor total revenue, order quantity, profit, and customer performance across multiple years and channels with real-time interactive insights.</p>
+        <div class="embed" role="region" aria-label="Embedded Power BI report">
+          <!-- Replace the src with your published-to-web link from Power BI -->
+         
+                  <img src="My power Bi_1_page-0001.jpg" width="100%">
+                  
+        </div>
+        <div class="chips">
+          <span class="badge">DAX Measures</span><span class="badge">RLS</span><span class="badge">Incremental Refresh</span>
+        </div>
+      </div>
+
+      <!-- Excel Projects -->
+      <div class="grid grid-2" style="margin-top:18px">
+        <article class="card">
+          <h3>Store Inventory Reconciliation — Excel</h3>
+          <p class="muted">Automated workbook using Power Query to merge GRN, sales (251), wastage (551), and stock counts; flags exceptions with conditional formatting.</p>
+          <a class="btn btn-outline" href="assets/Inventory_Recon_Dashboard.xlsx" download>Download Sample (.xlsx)</a>
+        </article>
+        <article class="card">
+          <h3>Price Change Tracker — Excel + VBA</h3>
+          <p class="muted">Userform to log price changes, generates daily exception report, and emails summary via Outlook macro.</p>
+          <a class="btn btn-outline" href="assets/Price_Change_Tracker.xlsm" download>Download Macro File (.xlsm)</a>
+        </article>
+      </div>
+
+      <!-- Gallery Cards -->
+      <div class="grid grid-3" style="margin-top:18px">
+        <article class="card">
+          <h3>Sales Performance</h3>
+          <p class="muted">Modern BI visuals with YOY, MOM, and ABC analysis.</p>
+          <a class="btn btn-outline" href="#" target="_blank" rel="noopener">Open Live</a>
+        </article>
+        <article class="card">
+          <h3>Stock Aging</h3>
+          <p class="muted">Aging buckets, slow-mover alerts, and safety stock thresholds.</p>
+          <a class="btn btn-outline" href="#" target="_blank" rel="noopener">Open Live</a>
+        </article>
+        <article class="card">
+          <h3>Procurement KPIs</h3>
+          <p class="muted">Lead time, fill rate, and supplier scorecards.</p>
+          <a class="btn btn-outline" href="#" target="_blank" rel="noopener">Open Live</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience / Highlights -->
+  <section id="experience">
+    <div class="container">
+      <h2>Experience</h2>
+      <div class="timeline">
+        <div class="row">
+          
+          <div class="content">
+            
+          </div>
+        </div>
+        <div class="row">
+          <div class="dot"></div>
+          <div class="content">
+            <b>Freelance — Dashboards & Training</b>
+            <div class="muted">Remote · Ongoing</div>
+            <p>Designed BI dashboards for small businesses, trained teams on Power BI, Excel shortcuts, and data hygiene.</p>
+          </div>
+        </div>
+      </div>
+      <div class="sep"></div>
+      <div class="chips">
+        <span class="badge">IITM BS Prep</span>
+        <span class="badge">AWS basics</span>
+        <span class="badge">Power BI Service</span>
+        <span class="badge">Data Visualization</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="container">
+      <h2>Contact</h2>
+      <p class="muted">Interested in a dashboard, Excel automation, or part-time reporting support? Let’s talk.</p>
+      <div class="grid grid-2">
+        <div class="card">
+          <h3>Get in touch</h3>
+          <p>Email: <a href="mailto:mail4mohammedrazi.com">Mail4mohammedrazi.com</a><br>
+             Phone/WhatsApp: <a href="tel:+919150297289">+91 91502-97280</a></p>
+          <div class="chips"><span class="badge">Response in 12h</span><span class="badge">Freelance / Contract</span></div>
+        </div>
+        
+        <div class="card">
+         <form id="contactForm">
+             <h3>Quick message</h3>
+          <input type="text" name="name" placeholder="Name" required 
+                 style="width:100%;padding:10px;border-radius:10px;border:1px solid #334155;background:transparent;color:inherit;margin-top:6px;font-family: Arial, Helvetica, sans-serif;">
+          <input type="email" name="email" placeholder="Email" required 
+                 style="width:100%;padding:10px;border-radius:10px;border:1px solid #334155;background:transparent;color:inherit;margin-top:6px; font-family: Arial, Helvetica, sans-serif;">
+          <textarea name="message" placeholder="Message" rows="4" required 
+                    style="width:100%;padding:10px;border-radius:10px;border:1px solid #334155;background:transparent;color:inherit;margin-top:6px; font-family: Arial, Helvetica, sans-serif;"></textarea>
+          <button class="btn btn-primary" type="submit" style="margin-top:10px">Send</button>
+        </form>
+        <p id="status" class="muted" style="margin-top:8px"></p>
+    </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <small>© <span id="year"></span> Mohammed Razi · All rights reserved · <a href="#top">Back to top</a></small>
+    
+  </footer>
+  
+  <script>
+      //Quick Message Form (Google Sheets Integration)
+      const scriptURL = "https://script.google.com/macros/s/AKfycbzpTChRp3xSBZPEErqOLONwyJkR3R9G0vQtC3PiFoI15mxNsgjKyQ9bKeH3JBpvEG8aRg/exec"; // Replace with your Web App URL
+  const form = document.getElementById("contactForm");
+  const status = document.getElementById("status");
+
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      message: form.message.value
+    };
+
+    fetch(scriptURL, {
+      method: "POST",
+      body: JSON.stringify(data)
+    })
+    .then(res => res.json())
+    .then(() => {
+      status.textContent = "✅ Message sent!";
+      form.reset();
+    })
+    .catch(err => {
+      status.textContent = "❌ Error: " + err.message;
+    });
+  });
+
+
+
+    // Mobile menu toggle
+    function toggleMenu(){
+      const nav=document.getElementById('menu');
+      const btn=document.querySelector('.menu-btn');
+      const open=nav.querySelector('ul').style.display !== 'flex';
+      nav.querySelector('ul').style.display = open ? 'flex' : 'none';
+      nav.querySelector('ul').style.flexDirection = 'column';
+      nav.querySelector('ul').style.gap = '12px';
+      btn.setAttribute('aria-expanded', open);
+    }
+
+    // Simple mailto sender (no backend). For a real form, swap to Formspree/Netlify Forms.
+    function sendMsg(e){
+      e.preventDefault();
+      const f=e.target;
+      const name=encodeURIComponent(f.name.value);
+      const email=encodeURIComponent(f.email.value);
+      const msg=encodeURIComponent(f.message.value);
+      const body=`Name: ${name}%0AEmail: ${email}%0A%0A${msg}`;
+      window.location.href=`mailto:yourmail@example.com?subject=Portfolio%20Inquiry&body=${body}`;
+      document.getElementById('msgStatus').textContent="Opening your email app…";
+      f.reset();
+    }
+
+    // Year
+    document.getElementById('year').textContent=new Date().getFullYear();
+
+    // Respect reduced motion
+    if (matchMedia('(prefers-reduced-motion: reduce)').matches){
+      document.documentElement.style.scrollBehavior='auto';
+    }
+  </script>
+</body>
+</html>
